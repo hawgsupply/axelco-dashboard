@@ -5,23 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Axel Co — Operations Dashboard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --pink:   #FF6B9D;
-    --purple: #B06AFF;
-    --cyan:   #00D4FF;
-    --green:  #00FF88;
-    --orange: #FF9F43;
-    --bg:     #08080F;
-    --bg2:    #0E0E1A;
-    --bg3:    #141422;
-    --border: #1E1E35;
-    --border2:#28284A;
-    --text:   #D0C8E8;
-    --muted:  #4A4070;
-    --mono:   'Share Tech Mono', monospace;
-    --head:   'Rajdhani', sans-serif;
+    --rose:    #F472B6;
+    --pink:    #EC4899;
+    --lilac:   #C084FC;
+    --peach:   #FB923C;
+    --mint:    #34D399;
+    --sky:     #38BDF8;
+    --cream:   #FDF4FF;
+    --bg:      #1A0A1E;
+    --bg2:     #22102A;
+    --bg3:     #2C1535;
+    --border:  #3D1F4A;
+    --border2: #5A2D6E;
+    --text:    #F3E8FF;
+    --muted:   #7C5A8F;
+    --mono:    'DM Mono', monospace;
+    --head:    'DM Sans', sans-serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -30,128 +32,158 @@
     font-family: var(--head);
     min-height: 100vh;
     background-image:
-      linear-gradient(rgba(176,106,255,0.015) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(176,106,255,0.015) 1px, transparent 1px);
-    background-size: 40px 40px;
+      radial-gradient(ellipse at 20% 0%, rgba(192,132,252,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 100%, rgba(244,114,182,0.06) 0%, transparent 60%);
   }
-  .shell { max-width: 1200px; margin: 0 auto; padding: 24px 20px; }
+  .shell { max-width: 1100px; margin: 0 auto; padding: 28px 20px; }
 
   /* HEADER */
   .header {
     display: flex; justify-content: space-between; align-items: flex-start;
-    margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--border);
+    margin-bottom: 32px; padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
     position: relative;
   }
   .header::after {
     content: ''; position: absolute; bottom: -1px; left: 0;
-    width: 120px; height: 2px;
-    background: linear-gradient(90deg, var(--pink), transparent);
+    width: 160px; height: 2px;
+    background: linear-gradient(90deg, var(--rose), var(--lilac), transparent);
+    border-radius: 2px;
   }
-  .brand-name { font-family: var(--head); font-weight: 700; font-size: 32px; letter-spacing: 4px; color: #fff; text-transform: uppercase; line-height: 1; }
-  .brand-name span { color: var(--pink); }
-  .brand-sub { font-family: var(--mono); font-size: 11px; color: var(--purple); letter-spacing: 3px; text-transform: uppercase; margin-top: 4px; }
+  .brand-wrap { display: flex; align-items: center; gap: 14px; }
+  .brand-icon { font-size: 28px; }
+  .brand-name { font-family: var(--head); font-weight: 700; font-size: 28px; letter-spacing: 2px; color: #fff; line-height: 1; }
+  .brand-name span { background: linear-gradient(90deg, var(--rose), var(--lilac)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .brand-sub { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 3px; text-transform: uppercase; margin-top: 5px; }
   .header-right { text-align: right; }
-  .date-display { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: 1px; }
-  .sync-status { font-family: var(--mono); font-size: 10px; margin-top: 4px; }
-  .sync-ok   { color: var(--green); }
-  .sync-err  { color: #FF3355; }
+  .date-display { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 1px; }
+  .sync-status { font-family: var(--mono); font-size: 10px; margin-top: 5px; }
+  .sync-ok   { color: var(--mint); }
+  .sync-err  { color: #F87171; }
   .sync-spin { color: var(--muted); }
   .header-actions { display: flex; gap: 8px; margin-top: 10px; justify-content: flex-end; }
 
   /* BUTTONS */
-  .btn { font-family: var(--head); font-weight: 600; font-size: 12px; padding: 7px 16px; border-radius: 2px; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: all 0.15s; text-decoration: none; display: inline-block; }
-  .btn-primary { background: var(--pink); color: #000; box-shadow: 0 0 12px rgba(255,107,157,0.3); }
-  .btn-primary:hover { background: #ff8fb8; box-shadow: 0 0 20px rgba(255,107,157,0.5); }
-  .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border2); }
-  .btn-ghost:hover { border-color: var(--pink); color: var(--pink); }
+  .btn { font-family: var(--head); font-weight: 600; font-size: 12px; padding: 8px 18px; border-radius: 20px; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: all 0.2s; text-decoration: none; display: inline-block; }
+  .btn-primary { background: linear-gradient(135deg, var(--rose), var(--lilac)); color: #fff; box-shadow: 0 4px 15px rgba(244,114,182,0.35); }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(244,114,182,0.5); }
+  .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border2); border-radius: 20px; }
+  .btn-ghost:hover { border-color: var(--rose); color: var(--rose); }
 
-  /* SHOPIFY STATS */
-  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 12px; }
-  .stat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; padding: 14px 16px; position: relative; overflow: hidden; }
-  .stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
-  .stat-card.s-pink::before   { background: var(--pink);   box-shadow: 0 0 8px var(--pink); }
-  .stat-card.s-purple::before { background: var(--purple); box-shadow: 0 0 8px var(--purple); }
-  .stat-card.s-cyan::before   { background: var(--cyan);   box-shadow: 0 0 8px var(--cyan); }
-  .stat-card.s-green::before  { background: var(--green);  box-shadow: 0 0 8px var(--green); }
-  .stat-num { font-family: var(--mono); font-size: 36px; line-height: 1; }
-  .s-pink   .stat-num { color: var(--pink);   text-shadow: 0 0 12px rgba(255,107,157,0.4); }
-  .s-purple .stat-num { color: var(--purple); text-shadow: 0 0 12px rgba(176,106,255,0.4); }
-  .s-cyan   .stat-num { color: var(--cyan);   text-shadow: 0 0 12px rgba(0,212,255,0.4); }
-  .s-green  .stat-num { color: var(--green);  text-shadow: 0 0 12px rgba(0,255,136,0.4); }
-  .stat-lbl { font-family: var(--head); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); margin-top: 4px; }
+  /* STATS */
+  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 32px; }
+  .stat-card {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 16px;
+    padding: 18px 20px; position: relative; overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .stat-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+  .stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 16px 16px 0 0; }
+  .stat-card.s-rose::before   { background: linear-gradient(90deg, var(--rose), var(--lilac)); }
+  .stat-card.s-lilac::before  { background: linear-gradient(90deg, var(--lilac), var(--sky)); }
+  .stat-card.s-mint::before   { background: linear-gradient(90deg, var(--mint), var(--sky)); }
+  .stat-num { font-family: var(--mono); font-size: 38px; line-height: 1; font-weight: 500; }
+  .s-rose  .stat-num { color: var(--rose); }
+  .s-lilac .stat-num { color: var(--lilac); }
+  .s-mint  .stat-num { color: var(--mint); }
+  .stat-lbl { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); margin-top: 6px; }
 
   /* SECTION */
-  .section { margin-bottom: 32px; }
-  .section-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--border); position: relative; }
-  .section-head::before { content: ''; position: absolute; bottom: -1px; left: 0; width: 60px; height: 1px; background: var(--pink); box-shadow: 0 0 6px var(--pink); }
-  .section-label { font-family: var(--head); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 3px; color: #fff; display: flex; align-items: center; gap: 10px; }
-  .sec-count { font-family: var(--mono); font-size: 11px; background: var(--bg3); border: 1px solid var(--border2); color: var(--pink); padding: 2px 8px; border-radius: 2px; }
+  .section { margin-bottom: 36px; }
+  .section-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 16px; padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .section-head::before {
+    content: ''; position: absolute; bottom: -1px; left: 0;
+    width: 50px; height: 2px;
+    background: linear-gradient(90deg, var(--rose), transparent);
+    border-radius: 2px;
+  }
+  .section-label { font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 2px; color: #fff; display: flex; align-items: center; gap: 10px; }
+  .sec-count { font-family: var(--mono); font-size: 11px; background: var(--bg3); border: 1px solid var(--border2); color: var(--rose); padding: 2px 10px; border-radius: 20px; }
 
-  /* CARDS */
-  .task-card { background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--muted); border-radius: 2px; padding: 12px 14px; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 14px; transition: all 0.2s; }
-  .task-card:hover { border-color: var(--border2); }
-  .task-card.done         { opacity: 0.35; border-left-color: var(--green); }
-  .task-card.in-progress  { border-left-color: var(--pink);   box-shadow: -2px 0 8px rgba(255,107,157,0.15); }
-  .task-card.ordered      { border-left-color: var(--purple); box-shadow: -2px 0 8px rgba(176,106,255,0.15); }
-  .task-card.received     { border-left-color: var(--cyan);   box-shadow: -2px 0 8px rgba(0,212,255,0.15); }
+  /* TASK CARDS */
+  .task-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-left: 3px solid var(--border2);
+    border-radius: 12px; padding: 14px 16px; margin-bottom: 8px;
+    display: flex; align-items: flex-start; gap: 14px; transition: all 0.2s;
+  }
+  .task-card:hover { border-color: var(--border2); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+  .task-card.done         { opacity: 0.4; border-left-color: var(--mint); }
+  .task-card.in-progress  { border-left-color: var(--rose);  box-shadow: -3px 0 12px rgba(244,114,182,0.15); }
+  .task-card.ordered      { border-left-color: var(--lilac); box-shadow: -3px 0 12px rgba(192,132,252,0.15); }
+  .task-card.received     { border-left-color: var(--sky);   box-shadow: -3px 0 12px rgba(56,189,248,0.15); }
   .task-card.not-started  { border-left-color: var(--border2); }
   .task-left { flex: 1; }
-  .task-title { font-family: var(--head); font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.5; margin-bottom: 8px; }
+  .task-title { font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.5; margin-bottom: 8px; }
   .task-card.done .task-title { text-decoration: line-through; color: var(--muted); }
   .task-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-  .day-badge { font-family: var(--mono); font-size: 10px; padding: 2px 7px; border-radius: 2px; letter-spacing: 1px; text-transform: uppercase; }
-  .day-Mon { background: rgba(106,163,255,0.12); color: #6AA3FF; border: 1px solid rgba(106,163,255,0.25); }
-  .day-Tue { background: rgba(176,106,255,0.12); color: #B06AFF; border: 1px solid rgba(176,106,255,0.25); }
-  .day-Wed { background: rgba(255,107,157,0.12); color: #FF6B9D; border: 1px solid rgba(255,107,157,0.25); }
-  .day-Thu { background: rgba(106,255,170,0.12); color: #6AFFAA; border: 1px solid rgba(106,255,170,0.25); }
-  .day-Fri { background: rgba(255,204,68,0.12);  color: #FFCC44; border: 1px solid rgba(255,204,68,0.25); }
-  .day-Sat { background: rgba(68,255,238,0.12);  color: #44FFEE; border: 1px solid rgba(68,255,238,0.25); }
-  .day-Sun { background: rgba(255,170,68,0.12);  color: #FFAA44; border: 1px solid rgba(255,170,68,0.25); }
+  .day-badge { font-family: var(--mono); font-size: 10px; padding: 3px 9px; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase; font-weight: 500; }
+  .day-Mon { background: rgba(56,189,248,0.12);  color: #38BDF8; border: 1px solid rgba(56,189,248,0.3); }
+  .day-Tue { background: rgba(192,132,252,0.12); color: #C084FC; border: 1px solid rgba(192,132,252,0.3); }
+  .day-Wed { background: rgba(244,114,182,0.12); color: #F472B6; border: 1px solid rgba(244,114,182,0.3); }
+  .day-Thu { background: rgba(52,211,153,0.12);  color: #34D399; border: 1px solid rgba(52,211,153,0.3); }
+  .day-Fri { background: rgba(251,146,60,0.12);  color: #FB923C; border: 1px solid rgba(251,146,60,0.3); }
+  .day-Sat { background: rgba(251,191,36,0.12);  color: #FBB F24; border: 1px solid rgba(251,191,36,0.3); }
+  .day-Sun { background: rgba(248,113,113,0.12); color: #F87171; border: 1px solid rgba(248,113,113,0.3); }
   .task-right { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex-shrink: 0; }
   .task-actions { display: flex; gap: 4px; align-items: center; }
-  .day-select { background: var(--bg3); border: 1px solid var(--border2); color: var(--muted); font-family: var(--mono); font-size: 11px; padding: 4px 8px; border-radius: 2px; cursor: pointer; }
-  .day-select:focus { outline: none; border-color: var(--pink); }
-  .icon-btn { background: none; border: 1px solid var(--border); cursor: pointer; font-size: 13px; padding: 3px 7px; border-radius: 2px; color: var(--muted); transition: all 0.15s; }
+  .day-select { background: var(--bg3); border: 1px solid var(--border2); color: var(--muted); font-family: var(--mono); font-size: 11px; padding: 4px 8px; border-radius: 8px; cursor: pointer; }
+  .day-select:focus { outline: none; border-color: var(--rose); }
+  .icon-btn { background: none; border: 1px solid var(--border); cursor: pointer; font-size: 12px; padding: 4px 8px; border-radius: 8px; color: var(--muted); transition: all 0.15s; }
   .icon-btn:hover { border-color: var(--border2); color: var(--text); background: var(--bg3); }
-  .icon-btn.delete:hover { border-color: #FF3355; color: #FF3355; }
-  .status-group { display: flex; gap: 3px; flex-wrap: wrap; justify-content: flex-end; }
-  .status-btn { font-family: var(--head); font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 2px; border: 1px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; transition: all 0.15s; text-transform: uppercase; letter-spacing: 1px; }
+  .icon-btn.delete:hover { border-color: #F87171; color: #F87171; }
+  .status-group { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+  .status-btn { font-size: 10px; font-weight: 600; padding: 3px 10px; border-radius: 20px; border: 1px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; transition: all 0.15s; text-transform: uppercase; letter-spacing: 1px; }
   .status-btn:hover { border-color: var(--border2); color: var(--text); }
   .status-btn.active-not-started { border-color: var(--border2); color: var(--text); background: var(--bg3); }
-  .status-btn.active-in-progress { border-color: var(--pink);   color: var(--pink);   background: rgba(255,107,157,0.1); }
-  .status-btn.active-ordered     { border-color: var(--purple); color: var(--purple); background: rgba(176,106,255,0.1); }
-  .status-btn.active-received    { border-color: var(--cyan);   color: var(--cyan);   background: rgba(0,212,255,0.1); }
-  .status-btn.active-done        { border-color: var(--green);  color: var(--green);  background: rgba(0,255,136,0.1); }
+  .status-btn.active-in-progress { border-color: var(--rose);  color: var(--rose);  background: rgba(244,114,182,0.12); }
+  .status-btn.active-ordered     { border-color: var(--lilac); color: var(--lilac); background: rgba(192,132,252,0.12); }
+  .status-btn.active-received    { border-color: var(--sky);   color: var(--sky);   background: rgba(56,189,248,0.12); }
+  .status-btn.active-done        { border-color: var(--mint);  color: var(--mint);  background: rgba(52,211,153,0.12); }
 
   /* INV CARDS */
-  .inv-card { background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--purple); border-radius: 2px; padding: 14px 16px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; }
-  .inv-card.status-ordered  { border-left-color: var(--purple); }
-  .inv-card.status-shipped  { border-left-color: var(--orange); }
-  .inv-card.status-received { border-left-color: var(--green); }
-  .inv-name { font-family: var(--head); font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+  .inv-card {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-left: 3px solid var(--lilac);
+    border-radius: 12px; padding: 14px 16px; margin-bottom: 8px;
+    display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px;
+    transition: all 0.2s;
+  }
+  .inv-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+  .inv-card.status-ordered  { border-left-color: var(--lilac); }
+  .inv-card.status-shipped  { border-left-color: var(--peach); }
+  .inv-card.status-received { border-left-color: var(--mint); }
+  .inv-name { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 4px; }
   .inv-meta { font-family: var(--mono); font-size: 11px; color: var(--muted); display: flex; gap: 16px; flex-wrap: wrap; margin-top: 6px; }
   .inv-meta strong { color: var(--text); }
-  .inv-sbtn { font-family: var(--head); font-weight: 600; font-size: 10px; padding: 4px 12px; border-radius: 2px; cursor: pointer; border: 1px solid; text-transform: uppercase; letter-spacing: 1px; transition: all 0.15s; }
-
-  /* SHOPIFY ORDER CARD */
-  .order-card { background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--orange); border-radius: 2px; padding: 14px 16px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; }
-  .order-card:hover { border-color: var(--border2); }
+  .inv-sbtn { font-weight: 600; font-size: 10px; padding: 4px 12px; border-radius: 20px; cursor: pointer; border: 1px solid; text-transform: uppercase; letter-spacing: 1px; transition: all 0.2s; }
 
   /* MODAL */
-  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(4px); z-index: 100; justify-content: center; align-items: center; }
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(10,3,15,0.9); backdrop-filter: blur(8px); z-index: 100; justify-content: center; align-items: center; }
   .modal-overlay.open { display: flex; }
-  .modal { background: var(--bg2); border: 1px solid var(--border2); border-top: 2px solid var(--pink); border-radius: 4px; padding: 28px; width: 480px; max-width: 95vw; box-shadow: 0 0 40px rgba(255,107,157,0.15); }
-  .modal h2 { font-family: var(--head); font-weight: 700; font-size: 16px; text-transform: uppercase; letter-spacing: 2px; color: var(--pink); margin-bottom: 20px; }
+  .modal {
+    background: var(--bg2); border: 1px solid var(--border2);
+    border-top: 3px solid transparent;
+    border-image: linear-gradient(90deg, var(--rose), var(--lilac)) 1;
+    border-radius: 20px; padding: 28px; width: 480px; max-width: 95vw;
+    box-shadow: 0 20px 60px rgba(244,114,182,0.15);
+  }
+  .modal h2 { font-weight: 700; font-size: 18px; margin-bottom: 20px; background: linear-gradient(90deg, var(--rose), var(--lilac)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
   .form-group { margin-bottom: 16px; }
   .form-group label { display: block; font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 7px; }
-  .form-group textarea, .form-group select, .form-group input { width: 100%; background: var(--bg3); border: 1px solid var(--border2); color: var(--text); border-radius: 2px; padding: 9px 12px; font-size: 13px; font-family: var(--head); resize: vertical; transition: border-color 0.15s; }
+  .form-group textarea, .form-group select, .form-group input { width: 100%; background: var(--bg3); border: 1px solid var(--border2); color: var(--text); border-radius: 10px; padding: 10px 14px; font-size: 13px; font-family: var(--head); resize: vertical; transition: border-color 0.2s; }
   .form-group textarea { min-height: 60px; }
-  .form-group select, .form-group input { height: 38px; resize: none; }
-  .form-group textarea:focus, .form-group select:focus, .form-group input:focus { outline: none; border-color: var(--pink); }
+  .form-group select, .form-group input { height: 40px; resize: none; }
+  .form-group textarea:focus, .form-group select:focus, .form-group input:focus { outline: none; border-color: var(--rose); box-shadow: 0 0 0 3px rgba(244,114,182,0.1); }
   .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 20px; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
-  .empty-state { color: var(--muted); font-size: 13px; padding: 12px 0; font-family: var(--mono); }
+  .empty-state { color: var(--muted); font-size: 13px; padding: 16px 0; font-family: var(--mono); }
   .loading { color: var(--muted); font-size: 12px; font-family: var(--mono); padding: 12px 0; }
 
   ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--bg); } ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
@@ -162,53 +194,43 @@
 <div class="shell">
 
   <div class="header">
-    <div>
-      <div class="brand-name">AXEL <span>CO</span></div>
-      <div class="brand-sub">// OPERATIONS CENTER ✨</div>
+    <div class="brand-wrap">
+      <div class="brand-icon">🏍️</div>
+      <div>
+        <div class="brand-name">AXEL <span>CO</span></div>
+        <div class="brand-sub">// Operations Center ✨</div>
+      </div>
     </div>
     <div class="header-right">
       <div class="date-display" id="dateDisplay"></div>
-      <div class="sync-status sync-spin" id="syncStatus">● CONNECTING...</div>
+      <div class="sync-status sync-spin" id="syncStatus">● connecting...</div>
       <div class="header-actions">
-        <a href="https://admin.shopify.com/store/actuallyitsaxel/orders" target="_blank" class="btn btn-ghost">SHOPIFY ↗</a>
-        <button class="btn btn-ghost" onclick="refreshAll()">↻ REFRESH</button>
+        <button class="btn btn-ghost" onclick="refreshAll()">↻ Refresh</button>
       </div>
     </div>
   </div>
 
-  <!-- SHOPIFY LIVE STATS -->
-  <div class="stats-row" style="margin-bottom:28px">
-    <div class="stat-card s-pink">
-      <div class="stat-num" id="stat-unfulfilled">—</div>
-      <div class="stat-lbl">Unfulfilled Orders</div>
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-card s-rose">
+      <div class="stat-num" id="stat-done">0</div>
+      <div class="stat-lbl">Tasks Done 💅</div>
     </div>
-    <div class="stat-card s-purple">
-      <div class="stat-num" id="stat-total-orders">—</div>
-      <div class="stat-lbl">Total Orders</div>
+    <div class="stat-card s-lilac">
+      <div class="stat-num" id="stat-prog">0</div>
+      <div class="stat-lbl">In Progress ✨</div>
     </div>
-    <div class="stat-card s-cyan">
-      <div class="stat-num" id="stat-today-rev">—</div>
-      <div class="stat-lbl">Today's Revenue</div>
+    <div class="stat-card s-mint">
+      <div class="stat-num" id="stat-inv">0</div>
+      <div class="stat-lbl">Inventory Items 📦</div>
     </div>
-    <div class="stat-card s-green">
-      <div class="stat-num" id="stat-products">—</div>
-      <div class="stat-lbl">Products</div>
-    </div>
-  </div>
-
-  <!-- UNFULFILLED ORDERS -->
-  <div class="section">
-    <div class="section-head">
-      <div class="section-label">🛍 Unfulfilled Orders <span class="sec-count" id="orders-count">—</span></div>
-    </div>
-    <div id="orders-list"><div class="loading">Loading orders...</div></div>
   </div>
 
   <!-- TASKS -->
   <div class="section">
     <div class="section-head">
       <div class="section-label">✦ Tasks <span class="sec-count" id="tasks-count">0</span></div>
-      <button class="btn btn-primary" onclick="openTaskModal()">+ ADD TASK</button>
+      <button class="btn btn-primary" onclick="openTaskModal()">+ Add Task</button>
     </div>
     <div id="tasks-list"><div class="loading">Loading tasks...</div></div>
   </div>
@@ -217,7 +239,7 @@
   <div class="section">
     <div class="section-head">
       <div class="section-label">◈ Inventory Orders <span class="sec-count" id="inv-count">0</span></div>
-      <button class="btn btn-primary" onclick="openInvModal()">+ ADD ITEM</button>
+      <button class="btn btn-primary" onclick="openInvModal()">+ Add Item</button>
     </div>
     <div id="inv-list"><div class="loading">Loading inventory...</div></div>
   </div>
@@ -227,15 +249,15 @@
 <!-- TASK MODAL -->
 <div class="modal-overlay" id="taskModalOverlay">
   <div class="modal">
-    <h2 id="taskModalTitle">Add Task</h2>
+    <h2 id="taskModalTitle">Add Task ✨</h2>
     <div class="form-group"><label>Description</label><textarea id="taskTitle" placeholder="What needs to get done?"></textarea></div>
     <div class="form-row">
       <div class="form-group"><label>Day</label><select id="taskDay"><option>Mon</option><option>Tue</option><option>Wed</option><option>Thu</option><option>Fri</option><option>Sat</option><option>Sun</option></select></div>
       <div class="form-group"><label>Status</label><select id="taskStatus"><option>Not Started</option><option>In Progress</option><option>Ordered</option><option>Done</option></select></div>
     </div>
     <div class="modal-actions">
-      <button class="btn btn-ghost" onclick="closeTaskModal()">CANCEL</button>
-      <button class="btn btn-primary" onclick="saveTask()">SAVE</button>
+      <button class="btn btn-ghost" onclick="closeTaskModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveTask()">Save</button>
     </div>
   </div>
 </div>
@@ -243,7 +265,7 @@
 <!-- INVENTORY MODAL -->
 <div class="modal-overlay" id="invModalOverlay">
   <div class="modal">
-    <h2>Add Inventory Item</h2>
+    <h2>Add Inventory Item 📦</h2>
     <div class="form-group"><label>Item Name</label><input type="text" id="invName" placeholder="e.g. Leather Jackets - Size M"></div>
     <div class="form-row">
       <div class="form-group"><label>Quantity</label><input type="text" id="invQty" placeholder="e.g. 24 units"></div>
@@ -256,21 +278,20 @@
     </div>
     <div class="form-group"><label>Notes</label><textarea id="invNotes" placeholder="Any notes..."></textarea></div>
     <div class="modal-actions">
-      <button class="btn btn-ghost" onclick="closeInvModal()">CANCEL</button>
-      <button class="btn btn-primary" onclick="saveInvItem()">SAVE</button>
+      <button class="btn btn-ghost" onclick="closeInvModal()">Cancel</button>
+      <button class="btn btn-primary" onclick="saveInvItem()">Save</button>
     </div>
   </div>
 </div>
 
 <script>
-// ── Config ────────────────────────────────────────────────────────────────────
 const SUPA_URL = 'https://yvuqgqjutljxmihuumwv.supabase.co';
 const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl2dXFncWp1dGxqeG1paHV1bXd2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5Nzg3NzEsImV4cCI6MjA4OTU1NDc3MX0.e1AdT57XdNRKe5iyE6Fn2Fo105O2TgBLGIvGHIMQl5Q';
 const SECTION  = 'axelco_tasks';
 const DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
 const TASK_STATUSES = ['Not Started','In Progress','Ordered','Done'];
 const INV_STATUSES  = ['Ordered','Shipped','Received'];
-const INV_COLORS    = { Ordered: '#B06AFF', Shipped: '#FF9F43', Received: '#00FF88' };
+const INV_COLORS    = { Ordered: '#C084FC', Shipped: '#FB923C', Received: '#34D399' };
 
 const HEADERS = {
   'apikey': SUPA_KEY,
@@ -285,7 +306,6 @@ function setSyncStatus(state, msg) {
   el.textContent = msg;
 }
 
-// ── Supabase helpers ──────────────────────────────────────────────────────────
 async function dbGet(table, query='') {
   const r = await fetch(`${SUPA_URL}/rest/v1/${table}?${query}`, { headers: HEADERS });
   if (!r.ok) throw new Error(await r.text());
@@ -312,60 +332,6 @@ async function dbDelete(table, id) {
   if (!r.ok) throw new Error(await r.text());
 }
 
-// ── Shopify stats (baked in, refreshed by AxelBot) ───────────────────────────
-const SHOPIFY_STATS = {
-  unfulfilled: 4,
-  totalOrders: 135,
-  products: 14797,
-  todayRevenue: 453.62,
-  lastSync: 'Mar 19, 2026',
-  orders: [
-    { id: '6790124568725', name: '#15804', item: '"Dick or Wheels" Ringer Tee — X-SMALL', customer: 'Abbie Miller', city: 'Monticello, IL', total: '$40.62', time: 'Today 8:08 PM' },
-    { id: '6789987467413', name: '#15803', item: 'Leopard Bar Bag', customer: 'Bubba Benson', city: 'Boaz, AL', total: '$55.52', time: 'Today 5:59 PM' },
-    { id: '6789859147925', name: '#15802', item: '"Dick or Wheels" Ringer Tee — MEDIUM + X-LARGE', customer: 'Brandy McCoy', city: 'Boise, ID', total: '$75.89', time: 'Today 4:07 PM' },
-    { id: '6789843714197', name: '#15801', item: 'Gloves + Jacket + Bar Bag + Neck Tube + Balaclava (5 items)', customer: 'Halee Raff', city: 'San Rafael, CA', total: '$281.59', time: 'Today 3:54 PM' },
-  ]
-};
-
-function renderShopify() {
-  const s = SHOPIFY_STATS;
-  document.getElementById('stat-unfulfilled').textContent = s.unfulfilled;
-  document.getElementById('stat-total-orders').textContent = s.totalOrders.toLocaleString();
-  document.getElementById('stat-today-rev').textContent = '$' + s.todayRevenue.toFixed(0);
-  document.getElementById('stat-products').textContent = s.products.toLocaleString();
-  document.getElementById('orders-count').textContent = s.orders.length;
-
-  const container = document.getElementById('orders-list');
-  container.innerHTML = '';
-  if (!s.orders.length) {
-    container.innerHTML = '<div class="empty-state">No unfulfilled orders 🎉</div>';
-    return;
-  }
-  s.orders.forEach(o => {
-    const div = document.createElement('div');
-    div.className = 'order-card';
-    div.innerHTML = `
-      <div style="flex:1">
-        <div class="inv-name">${o.name} — ${o.item}</div>
-        <div class="inv-meta">
-          <span>CUSTOMER: <strong>${o.customer}</strong></span>
-          <span>CITY: <strong>${o.city}</strong></span>
-          <span>TOTAL: <strong style="color:var(--pink)">${o.total}</strong></span>
-          <span>PLACED: <strong style="color:var(--cyan)">${o.time}</strong></span>
-        </div>
-      </div>
-      <div style="display:flex;align-items:center">
-        <a href="https://admin.shopify.com/store/actuallyitsaxel/orders/${o.id}" target="_blank" class="btn btn-ghost" style="font-size:11px">VIEW ↗</a>
-      </div>`;
-    container.appendChild(div);
-  });
-
-  const foot = document.createElement('div');
-  foot.style = 'font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:10px;text-align:right';
-  foot.textContent = `Last synced: ${s.lastSync} · Updated by AxelBot`;
-  container.appendChild(foot);
-}
-
 // ── Tasks ─────────────────────────────────────────────────────────────────────
 let taskModalMode = 'add';
 let taskEditId = null;
@@ -381,9 +347,11 @@ function statusKey(s) { return s.toLowerCase().replace(/\s+/g,'-'); }
 function renderTasks() {
   const container = document.getElementById('tasks-list');
   document.getElementById('tasks-count').textContent = tasksCache.length;
+  document.getElementById('stat-done').textContent = tasksCache.filter(t=>t.status==='Done').length;
+  document.getElementById('stat-prog').textContent = tasksCache.filter(t=>t.status==='In Progress').length;
   container.innerHTML = '';
   if (!tasksCache.length) {
-    container.innerHTML = '<div class="empty-state">No tasks yet. Hit + ADD TASK to get started ✨</div>';
+    container.innerHTML = '<div class="empty-state">No tasks yet — hit + Add Task to get started 💅</div>';
     return;
   }
   tasksCache.forEach(task => {
@@ -400,7 +368,7 @@ function renderTasks() {
           <select class="day-select" onchange="changeTaskDay('${task.id}',this.value)">
             ${DAYS.map(d=>`<option value="${d}"${d===task.day?' selected':''}>${d}</option>`).join('')}
           </select>
-          <button class="icon-btn" onclick="openEditTask('${task.id}')">✏</button>
+          <button class="icon-btn" onclick="openEditTask('${task.id}')">✏️</button>
           <button class="icon-btn delete" onclick="deleteTask('${task.id}')">✕</button>
         </div>
         <div class="status-group">
@@ -413,7 +381,7 @@ function renderTasks() {
 
 function openTaskModal() {
   taskModalMode = 'add'; taskEditId = null;
-  document.getElementById('taskModalTitle').textContent = 'Add Task';
+  document.getElementById('taskModalTitle').textContent = 'Add Task ✨';
   document.getElementById('taskTitle').value = '';
   document.getElementById('taskDay').value = 'Mon';
   document.getElementById('taskStatus').value = 'Not Started';
@@ -423,7 +391,7 @@ function openEditTask(id) {
   const task = tasksCache.find(t => t.id == id);
   if (!task) return;
   taskModalMode = 'edit'; taskEditId = id;
-  document.getElementById('taskModalTitle').textContent = 'Edit Task';
+  document.getElementById('taskModalTitle').textContent = 'Edit Task ✏️';
   document.getElementById('taskTitle').value = task.title;
   document.getElementById('taskDay').value = task.day;
   document.getElementById('taskStatus').value = task.status;
@@ -436,28 +404,17 @@ async function saveTask() {
   if (!title) return;
   const payload = { title, day: document.getElementById('taskDay').value, status: document.getElementById('taskStatus').value, section: SECTION };
   try {
-    if (taskModalMode === 'add') {
-      await dbPost('tasks', payload);
-    } else {
-      await dbPatch('tasks', taskEditId, payload);
-    }
+    if (taskModalMode === 'add') { await dbPost('tasks', payload); }
+    else { await dbPatch('tasks', taskEditId, payload); }
     closeTaskModal();
     await loadTasks();
   } catch(e) { alert('Save failed: ' + e.message); }
 }
-
-async function changeTaskStatus(id, status) {
-  await dbPatch('tasks', id, { status });
-  await loadTasks();
-}
-async function changeTaskDay(id, day) {
-  await dbPatch('tasks', id, { day });
-  await loadTasks();
-}
+async function changeTaskStatus(id, status) { await dbPatch('tasks', id, { status }); await loadTasks(); }
+async function changeTaskDay(id, day) { await dbPatch('tasks', id, { day }); await loadTasks(); }
 async function deleteTask(id) {
   if (!confirm('Delete this task?')) return;
-  await dbDelete('tasks', id);
-  await loadTasks();
+  await dbDelete('tasks', id); await loadTasks();
 }
 
 // ── Inventory ─────────────────────────────────────────────────────────────────
@@ -471,13 +428,13 @@ async function loadInv() {
 function renderInv() {
   const container = document.getElementById('inv-list');
   document.getElementById('inv-count').textContent = invCache.length;
+  document.getElementById('stat-inv').textContent = invCache.length;
   container.innerHTML = '';
   if (!invCache.length) {
-    container.innerHTML = '<div class="empty-state">No inventory items yet. Click + ADD ITEM to get started ✨</div>';
+    container.innerHTML = '<div class="empty-state">No inventory items yet — click + Add Item to get started 📦</div>';
     return;
   }
   invCache.forEach(item => {
-    const color = INV_COLORS[item.status] || '#555';
     const div = document.createElement('div');
     div.className = `inv-card status-${(item.status||'').toLowerCase()}`;
     div.innerHTML = `
@@ -486,9 +443,9 @@ function renderInv() {
         <div class="inv-meta">
           ${item.qty      ? `<span>QTY: <strong>${item.qty}</strong></span>` : ''}
           ${item.supplier ? `<span>FROM: <strong>${item.supplier}</strong></span>` : ''}
-          ${item.cost     ? `<span>COST: <strong style="color:var(--pink)">${item.cost}</strong></span>` : ''}
-          ${item.eta      ? `<span>ETA: <strong style="color:var(--cyan)">${item.eta}</strong></span>` : ''}
-          ${item.notes    ? `<span style="color:var(--muted);font-style:italic">${item.notes}</span>` : ''}
+          ${item.cost     ? `<span>COST: <strong style="color:var(--rose)">${item.cost}</strong></span>` : ''}
+          ${item.eta      ? `<span>ETA: <strong style="color:var(--sky)">${item.eta}</strong></span>` : ''}
+          ${item.notes    ? `<span style="font-style:italic">${item.notes}</span>` : ''}
         </div>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
@@ -498,7 +455,7 @@ function renderInv() {
             const c = INV_COLORS[s];
             const active = item.status === s;
             return `<button class="inv-sbtn" onclick="setInvStatus('${item.id}','${s}')"
-              style="border-color:${c};color:${active?'#000':c};background:${active?c:c+'18'}">${s}</button>`;
+              style="border-color:${c};color:${active?'#1a0a1e':c};background:${active?c:c+'22'}">${s}</button>`;
           }).join('')}
         </div>
       </div>`;
@@ -515,40 +472,33 @@ function closeInvModal() {
 async function saveInvItem() {
   const name = document.getElementById('invName').value.trim();
   if (!name) return;
-  const payload = {
-    name,
-    qty:      document.getElementById('invQty').value.trim(),
-    status:   document.getElementById('invStatus').value,
-    supplier: document.getElementById('invSupplier').value.trim(),
-    cost:     document.getElementById('invCost').value.trim(),
-    eta:      document.getElementById('invEta').value.trim(),
-    notes:    document.getElementById('invNotes').value.trim(),
-  };
   try {
-    await dbPost('inventory', payload);
-    closeInvModal();
-    await loadInv();
+    await dbPost('inventory', {
+      name,
+      qty:      document.getElementById('invQty').value.trim(),
+      status:   document.getElementById('invStatus').value,
+      supplier: document.getElementById('invSupplier').value.trim(),
+      cost:     document.getElementById('invCost').value.trim(),
+      eta:      document.getElementById('invEta').value.trim(),
+      notes:    document.getElementById('invNotes').value.trim(),
+    });
+    closeInvModal(); await loadInv();
   } catch(e) { alert('Save failed: ' + e.message); }
 }
-async function setInvStatus(id, status) {
-  await dbPatch('inventory', id, { status });
-  await loadInv();
-}
+async function setInvStatus(id, status) { await dbPatch('inventory', id, { status }); await loadInv(); }
 async function deleteInv(id) {
   if (!confirm('Remove this item?')) return;
-  await dbDelete('inventory', id);
-  await loadInv();
+  await dbDelete('inventory', id); await loadInv();
 }
 
 // ── Init ──────────────────────────────────────────────────────────────────────
 async function refreshAll() {
-  setSyncStatus('spin', '● SYNCING...');
+  setSyncStatus('spin', '● syncing...');
   try {
-    renderShopify();
     await Promise.all([loadTasks(), loadInv()]);
-    setSyncStatus('ok', '● LIVE');
+    setSyncStatus('ok', '● live ✨');
   } catch(e) {
-    setSyncStatus('err', '● SYNC ERROR');
+    setSyncStatus('err', '● sync error');
     console.error(e);
   }
 }
