@@ -537,8 +537,54 @@ function importData(event) {
 document.getElementById('taskModalOverlay').addEventListener('click', e => { if(e.target===e.currentTarget) closeTaskModal(); });
 document.getElementById('invModalOverlay').addEventListener('click', e => { if(e.target===e.currentTarget) closeInvModal(); });
 
+// ── Supabase Sync ─────────────────────────────────────────────────────────────
+const SB_URL = 'https://yvuqgqjutljxmihuumwv.supabase.co';
+const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl2dXFncWp1dGxqeG1paHV1bXd2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5Nzg3NzEsImV4cCI6MjA4OTU1NDc3MX0.e1AdT57XdNRKe5iyE6Fn2Fo105O2TgBLGIvGHIMQl5Q';
+
+async function sbFetch(method, table, data, query='') {
+  try {
+    const res = await fetch(`${SB_URL}/rest/v1/${table}${query}`, {
+      method,
+      headers: {
+        'apikey': SB_KEY,
+        'Authorization': `Bearer ${SB_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': method === 'POST' ? 'resolution=merge-duplicates' : 'return=representation'
+      },
+      body: data ? JSON.stringify(data) : undefined
+    });
+    if (!res.ok) return null;
+    const text = await res.text();
+    return text ? JSON.parse(text) : [];
+  } catch { return null; }
+}
+
+async function syncTasks() {
+  const list = loadTasks().map(t => ({...t, section: 'axelco_tasks'}));
+  if (list.length) await sbFetch('POST', 'tasks', list);
+}
+async function syncInv() {
+  const list = loadInv();
+  if (list.length) await sbFetch('POST', 'inventory', list);
+}
+async function loadFromSB() {
+  const [sbTasks, sbInv] = await Promise.all([
+    sbFetch('GET', 'tasks', null, '?section=eq.axelco_tasks&order=created_at.asc'),
+    sbFetch('GET', 'inventory', null, '?order=created_at.asc')
+  ]);
+  if (sbTasks && sbTasks.length) { saveTasks(sbTasks); }
+  if (sbInv && sbInv.length) { saveInv_(sbInv); }
+}
+
+const _origSaveTasks = saveTasks;
+function saveTasks(t) { _origSaveTasks(t); syncTasks(); }
+const _origSaveInv = saveInv_;
+function saveInv_(i) { _origSaveInv(i); syncInv(); }
+
+loadFromSB().then(() => renderAll());
+// ─────────────────────────────────────────────────────────────────────────────
+
 document.getElementById('dateDisplay').textContent = new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'}).toUpperCase();
-renderAll();
 </script>
 </body>
 </html>
