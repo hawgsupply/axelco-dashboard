@@ -47,44 +47,38 @@
     width: 120px; height: 2px;
     background: linear-gradient(90deg, var(--pink), transparent);
   }
-  .brand-name {
-    font-family: var(--head); font-weight: 700; font-size: 32px;
-    letter-spacing: 4px; color: #fff; text-transform: uppercase; line-height: 1;
-  }
+  .brand-name { font-family: var(--head); font-weight: 700; font-size: 32px; letter-spacing: 4px; color: #fff; text-transform: uppercase; line-height: 1; }
   .brand-name span { color: var(--pink); }
   .brand-sub { font-family: var(--mono); font-size: 11px; color: var(--purple); letter-spacing: 3px; text-transform: uppercase; margin-top: 4px; }
   .header-right { text-align: right; }
   .date-display { font-family: var(--mono); font-size: 12px; color: var(--muted); letter-spacing: 1px; }
+  .sync-status { font-family: var(--mono); font-size: 10px; margin-top: 4px; }
+  .sync-ok   { color: var(--green); }
+  .sync-err  { color: #FF3355; }
+  .sync-spin { color: var(--muted); }
   .header-actions { display: flex; gap: 8px; margin-top: 10px; justify-content: flex-end; }
 
   /* BUTTONS */
-  .btn { font-family: var(--head); font-weight: 600; font-size: 12px; padding: 7px 16px; border-radius: 2px; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: all 0.15s; }
+  .btn { font-family: var(--head); font-weight: 600; font-size: 12px; padding: 7px 16px; border-radius: 2px; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: all 0.15s; text-decoration: none; display: inline-block; }
   .btn-primary { background: var(--pink); color: #000; box-shadow: 0 0 12px rgba(255,107,157,0.3); }
   .btn-primary:hover { background: #ff8fb8; box-shadow: 0 0 20px rgba(255,107,157,0.5); }
   .btn-ghost { background: transparent; color: var(--muted); border: 1px solid var(--border2); }
   .btn-ghost:hover { border-color: var(--pink); color: var(--pink); }
 
-  /* STATS */
+  /* SHOPIFY STATS */
   .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 12px; }
   .stat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 4px; padding: 14px 16px; position: relative; overflow: hidden; }
   .stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
-  .stat-card.s-done::before   { background: var(--green);  box-shadow: 0 0 8px var(--green); }
-  .stat-card.s-prog::before   { background: var(--pink);   box-shadow: 0 0 8px var(--pink); }
-  .stat-card.s-ord::before    { background: var(--purple); box-shadow: 0 0 8px var(--purple); }
-  .stat-card.s-recv::before   { background: var(--cyan);   box-shadow: 0 0 8px var(--cyan); }
+  .stat-card.s-pink::before   { background: var(--pink);   box-shadow: 0 0 8px var(--pink); }
+  .stat-card.s-purple::before { background: var(--purple); box-shadow: 0 0 8px var(--purple); }
+  .stat-card.s-cyan::before   { background: var(--cyan);   box-shadow: 0 0 8px var(--cyan); }
+  .stat-card.s-green::before  { background: var(--green);  box-shadow: 0 0 8px var(--green); }
   .stat-num { font-family: var(--mono); font-size: 36px; line-height: 1; }
-  .s-done .stat-num  { color: var(--green);  text-shadow: 0 0 12px rgba(0,255,136,0.4); }
-  .s-prog .stat-num  { color: var(--pink);   text-shadow: 0 0 12px rgba(255,107,157,0.4); }
-  .s-ord  .stat-num  { color: var(--purple); text-shadow: 0 0 12px rgba(176,106,255,0.4); }
-  .s-recv .stat-num  { color: var(--cyan);   text-shadow: 0 0 12px rgba(0,212,255,0.4); }
+  .s-pink   .stat-num { color: var(--pink);   text-shadow: 0 0 12px rgba(255,107,157,0.4); }
+  .s-purple .stat-num { color: var(--purple); text-shadow: 0 0 12px rgba(176,106,255,0.4); }
+  .s-cyan   .stat-num { color: var(--cyan);   text-shadow: 0 0 12px rgba(0,212,255,0.4); }
+  .s-green  .stat-num { color: var(--green);  text-shadow: 0 0 12px rgba(0,255,136,0.4); }
   .stat-lbl { font-family: var(--head); font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); margin-top: 4px; }
-
-  .progress-wrap { height: 4px; background: var(--border); border-radius: 2px; margin-bottom: 32px; display: flex; overflow: hidden; }
-  .pseg { height: 4px; transition: width 0.5s ease; }
-  .pseg-done { background: var(--green);  box-shadow: 0 0 6px var(--green); }
-  .pseg-prog { background: var(--pink);   box-shadow: 0 0 6px var(--pink); }
-  .pseg-ord  { background: var(--purple); box-shadow: 0 0 6px var(--purple); }
-  .pseg-ns   { background: var(--border2); }
 
   /* SECTION */
   .section { margin-bottom: 32px; }
@@ -93,7 +87,7 @@
   .section-label { font-family: var(--head); font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 3px; color: #fff; display: flex; align-items: center; gap: 10px; }
   .sec-count { font-family: var(--mono); font-size: 11px; background: var(--bg3); border: 1px solid var(--border2); color: var(--pink); padding: 2px 8px; border-radius: 2px; }
 
-  /* TASK CARDS */
+  /* CARDS */
   .task-card { background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--muted); border-radius: 2px; padding: 12px 14px; margin-bottom: 6px; display: flex; align-items: flex-start; gap: 14px; transition: all 0.2s; }
   .task-card:hover { border-color: var(--border2); }
   .task-card.done         { opacity: 0.35; border-left-color: var(--green); }
@@ -124,21 +118,24 @@
   .status-btn { font-family: var(--head); font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 2px; border: 1px solid var(--border); background: transparent; color: var(--muted); cursor: pointer; transition: all 0.15s; text-transform: uppercase; letter-spacing: 1px; }
   .status-btn:hover { border-color: var(--border2); color: var(--text); }
   .status-btn.active-not-started { border-color: var(--border2); color: var(--text); background: var(--bg3); }
-  .status-btn.active-in-progress { border-color: var(--pink);   color: var(--pink);   background: rgba(255,107,157,0.1); box-shadow: 0 0 6px rgba(255,107,157,0.2); }
-  .status-btn.active-ordered     { border-color: var(--purple); color: var(--purple); background: rgba(176,106,255,0.1); box-shadow: 0 0 6px rgba(176,106,255,0.2); }
-  .status-btn.active-received    { border-color: var(--cyan);   color: var(--cyan);   background: rgba(0,212,255,0.1);   box-shadow: 0 0 6px rgba(0,212,255,0.2); }
-  .status-btn.active-done        { border-color: var(--green);  color: var(--green);  background: rgba(0,255,136,0.1);   box-shadow: 0 0 6px rgba(0,255,136,0.2); }
+  .status-btn.active-in-progress { border-color: var(--pink);   color: var(--pink);   background: rgba(255,107,157,0.1); }
+  .status-btn.active-ordered     { border-color: var(--purple); color: var(--purple); background: rgba(176,106,255,0.1); }
+  .status-btn.active-received    { border-color: var(--cyan);   color: var(--cyan);   background: rgba(0,212,255,0.1); }
+  .status-btn.active-done        { border-color: var(--green);  color: var(--green);  background: rgba(0,255,136,0.1); }
 
-  /* INVENTORY CARDS */
+  /* INV CARDS */
   .inv-card { background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--purple); border-radius: 2px; padding: 14px 16px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; }
   .inv-card.status-ordered  { border-left-color: var(--purple); }
   .inv-card.status-shipped  { border-left-color: var(--orange); }
-  .inv-card.status-received { border-left-color: var(--green);  }
+  .inv-card.status-received { border-left-color: var(--green); }
   .inv-name { font-family: var(--head); font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 4px; }
   .inv-meta { font-family: var(--mono); font-size: 11px; color: var(--muted); display: flex; gap: 16px; flex-wrap: wrap; margin-top: 6px; }
   .inv-meta strong { color: var(--text); }
-  .inv-status-btns { display: flex; gap: 4px; flex-wrap: wrap; align-items: center; }
   .inv-sbtn { font-family: var(--head); font-weight: 600; font-size: 10px; padding: 4px 12px; border-radius: 2px; cursor: pointer; border: 1px solid; text-transform: uppercase; letter-spacing: 1px; transition: all 0.15s; }
+
+  /* SHOPIFY ORDER CARD */
+  .order-card { background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--orange); border-radius: 2px; padding: 14px 16px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; }
+  .order-card:hover { border-color: var(--border2); }
 
   /* MODAL */
   .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(4px); z-index: 100; justify-content: center; align-items: center; }
@@ -154,6 +151,9 @@
   .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 20px; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
+  .empty-state { color: var(--muted); font-size: 13px; padding: 12px 0; font-family: var(--mono); }
+  .loading { color: var(--muted); font-size: 12px; font-family: var(--mono); padding: 12px 0; }
+
   ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: var(--bg); } ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
   @media(max-width:600px){ .stats-row{grid-template-columns:repeat(2,1fr);} .task-card{flex-direction:column;} .task-right{align-items:flex-start;} }
 </style>
@@ -168,21 +168,41 @@
     </div>
     <div class="header-right">
       <div class="date-display" id="dateDisplay"></div>
+      <div class="sync-status sync-spin" id="syncStatus">● CONNECTING...</div>
       <div class="header-actions">
-        <button class="btn btn-ghost" onclick="exportData()">↓ EXPORT</button>
-        <button class="btn btn-ghost" onclick="document.getElementById('importFile').click()">↑ IMPORT</button>
-        <input type="file" id="importFile" accept=".json" style="display:none" onchange="importData(event)">
+        <a href="https://admin.shopify.com/store/actuallyitsaxel/orders" target="_blank" class="btn btn-ghost">SHOPIFY ↗</a>
+        <button class="btn btn-ghost" onclick="refreshAll()">↻ REFRESH</button>
       </div>
     </div>
   </div>
 
-  <div class="stats-row">
-    <div class="stat-card s-done"><div class="stat-num" id="stat-done">0</div><div class="stat-lbl">Completed</div></div>
-    <div class="stat-card s-prog"><div class="stat-num" id="stat-prog">0</div><div class="stat-lbl">In Progress</div></div>
-    <div class="stat-card s-ord"><div class="stat-num" id="stat-ord">0</div><div class="stat-lbl">Ordered</div></div>
-    <div class="stat-card s-recv"><div class="stat-num" id="stat-recv">0</div><div class="stat-lbl">Received</div></div>
+  <!-- SHOPIFY LIVE STATS -->
+  <div class="stats-row" style="margin-bottom:28px">
+    <div class="stat-card s-pink">
+      <div class="stat-num" id="stat-unfulfilled">—</div>
+      <div class="stat-lbl">Unfulfilled Orders</div>
+    </div>
+    <div class="stat-card s-purple">
+      <div class="stat-num" id="stat-total-orders">—</div>
+      <div class="stat-lbl">Total Orders</div>
+    </div>
+    <div class="stat-card s-cyan">
+      <div class="stat-num" id="stat-today-rev">—</div>
+      <div class="stat-lbl">Today's Revenue</div>
+    </div>
+    <div class="stat-card s-green">
+      <div class="stat-num" id="stat-products">—</div>
+      <div class="stat-lbl">Products</div>
+    </div>
   </div>
-  <div class="progress-wrap" id="progressBar"></div>
+
+  <!-- UNFULFILLED ORDERS -->
+  <div class="section">
+    <div class="section-head">
+      <div class="section-label">🛍 Unfulfilled Orders <span class="sec-count" id="orders-count">—</span></div>
+    </div>
+    <div id="orders-list"><div class="loading">Loading orders...</div></div>
+  </div>
 
   <!-- TASKS -->
   <div class="section">
@@ -190,88 +210,16 @@
       <div class="section-label">✦ Tasks <span class="sec-count" id="tasks-count">0</span></div>
       <button class="btn btn-primary" onclick="openTaskModal()">+ ADD TASK</button>
     </div>
-    <div id="tasks-list"></div>
+    <div id="tasks-list"><div class="loading">Loading tasks...</div></div>
   </div>
 
-  <!-- SHOPIFY LIVE ORDERS -->
+  <!-- INVENTORY -->
   <div class="section">
     <div class="section-head">
-      <div class="section-label">🛍 Shopify — Unfulfilled Orders <span class="sec-count" id="shopify-count">4</span></div>
-      <a href="https://admin.shopify.com/store/actuallyitsaxel/orders" target="_blank" class="btn btn-ghost">OPEN SHOPIFY ↗</a>
-    </div>
-    <div id="shopify-stats" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px">
-      <div class="stat-card s-prog"><div class="stat-num" style="font-size:28px">4</div><div class="stat-lbl">Unfulfilled</div></div>
-      <div class="stat-card s-ord"><div class="stat-num" style="font-size:28px">135</div><div class="stat-lbl">Total Orders</div></div>
-      <div class="stat-card s-recv"><div class="stat-num" style="font-size:28px">14,797</div><div class="stat-lbl">Products</div></div>
-    </div>
-    <div id="shopify-orders">
-      <div class="inv-card status-ordered">
-        <div style="flex:1">
-          <div class="inv-name">#15804 — "Dick or Wheels" Ringer Tee - X-SMALL</div>
-          <div class="inv-meta">
-            <span>CUSTOMER: <strong>Abbie Miller</strong></span>
-            <span>CITY: <strong>Monticello, IL</strong></span>
-            <span>TOTAL: <strong style="color:var(--pink)">$40.62</strong></span>
-            <span>PLACED: <strong style="color:var(--cyan)">Today 8:08 PM</strong></span>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center">
-          <a href="https://admin.shopify.com/store/actuallyitsaxel/orders/6790124568725" target="_blank" class="btn btn-ghost" style="font-size:11px">VIEW ↗</a>
-        </div>
-      </div>
-      <div class="inv-card status-ordered">
-        <div style="flex:1">
-          <div class="inv-name">#15803 — Leopard Bar Bag</div>
-          <div class="inv-meta">
-            <span>CUSTOMER: <strong>Bubba Benson</strong></span>
-            <span>CITY: <strong>Boaz, AL</strong></span>
-            <span>TOTAL: <strong style="color:var(--pink)">$55.52</strong></span>
-            <span>PLACED: <strong style="color:var(--cyan)">Today 5:59 PM</strong></span>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center">
-          <a href="https://admin.shopify.com/store/actuallyitsaxel/orders/6789987467413" target="_blank" class="btn btn-ghost" style="font-size:11px">VIEW ↗</a>
-        </div>
-      </div>
-      <div class="inv-card status-ordered">
-        <div style="flex:1">
-          <div class="inv-name">#15802 — "Dick or Wheels" Ringer Tee (MEDIUM + X-LARGE)</div>
-          <div class="inv-meta">
-            <span>CUSTOMER: <strong>Brandy McCoy</strong></span>
-            <span>CITY: <strong>Boise, ID</strong></span>
-            <span>TOTAL: <strong style="color:var(--pink)">$75.89</strong></span>
-            <span>PLACED: <strong style="color:var(--cyan)">Today 4:07 PM</strong></span>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center">
-          <a href="https://admin.shopify.com/store/actuallyitsaxel/orders/6789859147925" target="_blank" class="btn btn-ghost" style="font-size:11px">VIEW ↗</a>
-        </div>
-      </div>
-      <div class="inv-card status-ordered">
-        <div style="flex:1">
-          <div class="inv-name">#15801 — Gloves + Jacket + Bar Bag + Neck Tube + Balaclava (5 items)</div>
-          <div class="inv-meta">
-            <span>CUSTOMER: <strong>Halee Raff</strong></span>
-            <span>CITY: <strong>San Rafael, CA</strong></span>
-            <span>TOTAL: <strong style="color:var(--pink)">$281.59</strong></span>
-            <span>PLACED: <strong style="color:var(--cyan)">Today 3:54 PM</strong></span>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center">
-          <a href="https://admin.shopify.com/store/actuallyitsaxel/orders/6789843714197" target="_blank" class="btn btn-ghost" style="font-size:11px">VIEW ↗</a>
-        </div>
-      </div>
-    </div>
-    <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:10px;text-align:right">Last synced: Mar 19, 2026 · Updated by AxelBot</div>
-  </div>
-
-  <!-- INVENTORY ORDERED -->
-  <div class="section">
-    <div class="section-head">
-      <div class="section-label">◈ Inventory Ordered <span class="sec-count" id="inv-count">0</span></div>
+      <div class="section-label">◈ Inventory Orders <span class="sec-count" id="inv-count">0</span></div>
       <button class="btn btn-primary" onclick="openInvModal()">+ ADD ITEM</button>
     </div>
-    <div id="inv-list"></div>
+    <div id="inv-list"><div class="loading">Loading inventory...</div></div>
   </div>
 
 </div>
@@ -309,82 +257,136 @@
     <div class="form-group"><label>Notes</label><textarea id="invNotes" placeholder="Any notes..."></textarea></div>
     <div class="modal-actions">
       <button class="btn btn-ghost" onclick="closeInvModal()">CANCEL</button>
-      <button class="btn btn-primary" onclick="saveInv()">SAVE</button>
+      <button class="btn btn-primary" onclick="saveInvItem()">SAVE</button>
     </div>
   </div>
 </div>
 
 <script>
+// ── Config ────────────────────────────────────────────────────────────────────
+const SUPA_URL = 'https://yvuqgqjutljxmihuumwv.supabase.co';
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl2dXFncWp1dGxqeG1paHV1bXd2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5Nzg3NzEsImV4cCI6MjA4OTU1NDc3MX0.e1AdT57XdNRKe5iyE6Fn2Fo105O2TgBLGIvGHIMQl5Q';
+const SECTION  = 'axelco_tasks';
 const DAYS = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
 const TASK_STATUSES = ['Not Started','In Progress','Ordered','Done'];
 const INV_STATUSES  = ['Ordered','Shipped','Received'];
-const INV_COLORS    = { 'Ordered': '#B06AFF', 'Shipped': '#FF9F43', 'Received': '#00FF88' };
+const INV_COLORS    = { Ordered: '#B06AFF', Shipped: '#FF9F43', Received: '#00FF88' };
 
-const TASKS_KEY = 'axelco_tasks';
-const INV_KEY   = 'axelco_inventory';
+const HEADERS = {
+  'apikey': SUPA_KEY,
+  'Authorization': 'Bearer ' + SUPA_KEY,
+  'Content-Type': 'application/json',
+  'Prefer': 'return=representation'
+};
+
+function setSyncStatus(state, msg) {
+  const el = document.getElementById('syncStatus');
+  el.className = 'sync-status sync-' + state;
+  el.textContent = msg;
+}
+
+// ── Supabase helpers ──────────────────────────────────────────────────────────
+async function dbGet(table, query='') {
+  const r = await fetch(`${SUPA_URL}/rest/v1/${table}?${query}`, { headers: HEADERS });
+  if (!r.ok) throw new Error(await r.text());
+  return r.json();
+}
+async function dbPost(table, body) {
+  const r = await fetch(`${SUPA_URL}/rest/v1/${table}`, {
+    method: 'POST', headers: HEADERS, body: JSON.stringify(body)
+  });
+  if (!r.ok) throw new Error(await r.text());
+  return r.json();
+}
+async function dbPatch(table, id, body) {
+  const r = await fetch(`${SUPA_URL}/rest/v1/${table}?id=eq.${id}`, {
+    method: 'PATCH', headers: HEADERS, body: JSON.stringify(body)
+  });
+  if (!r.ok) throw new Error(await r.text());
+  return r.json();
+}
+async function dbDelete(table, id) {
+  const r = await fetch(`${SUPA_URL}/rest/v1/${table}?id=eq.${id}`, {
+    method: 'DELETE', headers: HEADERS
+  });
+  if (!r.ok) throw new Error(await r.text());
+}
+
+// ── Shopify stats (baked in, refreshed by AxelBot) ───────────────────────────
+const SHOPIFY_STATS = {
+  unfulfilled: 4,
+  totalOrders: 135,
+  products: 14797,
+  todayRevenue: 453.62,
+  lastSync: 'Mar 19, 2026',
+  orders: [
+    { id: '6790124568725', name: '#15804', item: '"Dick or Wheels" Ringer Tee — X-SMALL', customer: 'Abbie Miller', city: 'Monticello, IL', total: '$40.62', time: 'Today 8:08 PM' },
+    { id: '6789987467413', name: '#15803', item: 'Leopard Bar Bag', customer: 'Bubba Benson', city: 'Boaz, AL', total: '$55.52', time: 'Today 5:59 PM' },
+    { id: '6789859147925', name: '#15802', item: '"Dick or Wheels" Ringer Tee — MEDIUM + X-LARGE', customer: 'Brandy McCoy', city: 'Boise, ID', total: '$75.89', time: 'Today 4:07 PM' },
+    { id: '6789843714197', name: '#15801', item: 'Gloves + Jacket + Bar Bag + Neck Tube + Balaclava (5 items)', customer: 'Halee Raff', city: 'San Rafael, CA', total: '$281.59', time: 'Today 3:54 PM' },
+  ]
+};
+
+function renderShopify() {
+  const s = SHOPIFY_STATS;
+  document.getElementById('stat-unfulfilled').textContent = s.unfulfilled;
+  document.getElementById('stat-total-orders').textContent = s.totalOrders.toLocaleString();
+  document.getElementById('stat-today-rev').textContent = '$' + s.todayRevenue.toFixed(0);
+  document.getElementById('stat-products').textContent = s.products.toLocaleString();
+  document.getElementById('orders-count').textContent = s.orders.length;
+
+  const container = document.getElementById('orders-list');
+  container.innerHTML = '';
+  if (!s.orders.length) {
+    container.innerHTML = '<div class="empty-state">No unfulfilled orders 🎉</div>';
+    return;
+  }
+  s.orders.forEach(o => {
+    const div = document.createElement('div');
+    div.className = 'order-card';
+    div.innerHTML = `
+      <div style="flex:1">
+        <div class="inv-name">${o.name} — ${o.item}</div>
+        <div class="inv-meta">
+          <span>CUSTOMER: <strong>${o.customer}</strong></span>
+          <span>CITY: <strong>${o.city}</strong></span>
+          <span>TOTAL: <strong style="color:var(--pink)">${o.total}</strong></span>
+          <span>PLACED: <strong style="color:var(--cyan)">${o.time}</strong></span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center">
+        <a href="https://admin.shopify.com/store/actuallyitsaxel/orders/${o.id}" target="_blank" class="btn btn-ghost" style="font-size:11px">VIEW ↗</a>
+      </div>`;
+    container.appendChild(div);
+  });
+
+  const foot = document.createElement('div');
+  foot.style = 'font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:10px;text-align:right';
+  foot.textContent = `Last synced: ${s.lastSync} · Updated by AxelBot`;
+  container.appendChild(foot);
+}
 
 // ── Tasks ─────────────────────────────────────────────────────────────────────
-function loadTasks() { try { return JSON.parse(localStorage.getItem(TASKS_KEY) || '[]'); } catch { return []; } }
-function saveTasks(t) { localStorage.setItem(TASKS_KEY, JSON.stringify(t)); }
-function genId() { return 'id-' + Date.now() + '-' + Math.random().toString(36).substr(2,5); }
+let taskModalMode = 'add';
+let taskEditId = null;
+let tasksCache = [];
+
+async function loadTasks() {
+  tasksCache = await dbGet('tasks', `section=eq.${SECTION}&order=created_at.asc`);
+  renderTasks();
+}
+
 function statusKey(s) { return s.toLowerCase().replace(/\s+/g,'-'); }
 
-let taskModalMode = 'add';
-let taskEditId = '';
-
-function openTaskModal() {
-  taskModalMode = 'add';
-  document.getElementById('taskModalTitle').textContent = 'Add Task';
-  document.getElementById('taskTitle').value = '';
-  document.getElementById('taskDay').value = 'Mon';
-  document.getElementById('taskStatus').value = 'Not Started';
-  document.getElementById('taskModalOverlay').classList.add('open');
-}
-function openEditTask(id) {
-  const task = loadTasks().find(t => t.id === id);
-  if (!task) return;
-  taskModalMode = 'edit';
-  taskEditId = id;
-  document.getElementById('taskModalTitle').textContent = 'Edit Task';
-  document.getElementById('taskTitle').value = task.title;
-  document.getElementById('taskDay').value = task.day;
-  document.getElementById('taskStatus').value = task.status;
-  document.getElementById('taskModalOverlay').classList.add('open');
-}
-function closeTaskModal() { document.getElementById('taskModalOverlay').classList.remove('open'); }
-function saveTask() {
-  const title = document.getElementById('taskTitle').value.trim();
-  if (!title) return;
-  const tasks = loadTasks();
-  if (taskModalMode === 'add') {
-    tasks.push({ id: genId(), title, day: document.getElementById('taskDay').value, status: document.getElementById('taskStatus').value });
-  } else {
-    const t = tasks.find(t => t.id === taskEditId);
-    if (t) { t.title = title; t.day = document.getElementById('taskDay').value; t.status = document.getElementById('taskStatus').value; }
-  }
-  saveTasks(tasks); closeTaskModal(); renderAll();
-}
-function changeTaskStatus(id, status) {
-  const tasks = loadTasks();
-  const t = tasks.find(t => t.id === id);
-  if (t) { t.status = status; saveTasks(tasks); renderAll(); }
-}
-function changeTaskDay(id, day) {
-  const tasks = loadTasks();
-  const t = tasks.find(t => t.id === id);
-  if (t) { t.day = day; saveTasks(tasks); renderAll(); }
-}
-function deleteTask(id) {
-  if (!confirm('Delete this task?')) return;
-  saveTasks(loadTasks().filter(t => t.id !== id)); renderAll();
-}
-
 function renderTasks() {
-  const tasks = loadTasks();
   const container = document.getElementById('tasks-list');
-  document.getElementById('tasks-count').textContent = tasks.length;
+  document.getElementById('tasks-count').textContent = tasksCache.length;
   container.innerHTML = '';
-  tasks.forEach(task => {
+  if (!tasksCache.length) {
+    container.innerHTML = '<div class="empty-state">No tasks yet. Hit + ADD TASK to get started ✨</div>';
+    return;
+  }
+  tasksCache.forEach(task => {
     const sk = statusKey(task.status);
     const div = document.createElement('div');
     div.className = `task-card ${sk}`;
@@ -409,70 +411,89 @@ function renderTasks() {
   });
 }
 
-// ── Inventory ─────────────────────────────────────────────────────────────────
-function loadInv() { try { return JSON.parse(localStorage.getItem(INV_KEY) || '[]'); } catch { return []; } }
-function saveInv_(i) { localStorage.setItem(INV_KEY, JSON.stringify(i)); }
+function openTaskModal() {
+  taskModalMode = 'add'; taskEditId = null;
+  document.getElementById('taskModalTitle').textContent = 'Add Task';
+  document.getElementById('taskTitle').value = '';
+  document.getElementById('taskDay').value = 'Mon';
+  document.getElementById('taskStatus').value = 'Not Started';
+  document.getElementById('taskModalOverlay').classList.add('open');
+}
+function openEditTask(id) {
+  const task = tasksCache.find(t => t.id == id);
+  if (!task) return;
+  taskModalMode = 'edit'; taskEditId = id;
+  document.getElementById('taskModalTitle').textContent = 'Edit Task';
+  document.getElementById('taskTitle').value = task.title;
+  document.getElementById('taskDay').value = task.day;
+  document.getElementById('taskStatus').value = task.status;
+  document.getElementById('taskModalOverlay').classList.add('open');
+}
+function closeTaskModal() { document.getElementById('taskModalOverlay').classList.remove('open'); }
 
-function openInvModal() { document.getElementById('invModalOverlay').classList.add('open'); }
-function closeInvModal() {
-  document.getElementById('invModalOverlay').classList.remove('open');
-  ['invName','invQty','invSupplier','invCost','invEta','invNotes'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('invStatus').value = 'Ordered';
+async function saveTask() {
+  const title = document.getElementById('taskTitle').value.trim();
+  if (!title) return;
+  const payload = { title, day: document.getElementById('taskDay').value, status: document.getElementById('taskStatus').value, section: SECTION };
+  try {
+    if (taskModalMode === 'add') {
+      await dbPost('tasks', payload);
+    } else {
+      await dbPatch('tasks', taskEditId, payload);
+    }
+    closeTaskModal();
+    await loadTasks();
+  } catch(e) { alert('Save failed: ' + e.message); }
 }
-function saveInv() {
-  const name = document.getElementById('invName').value.trim();
-  if (!name) return;
-  const inv = loadInv();
-  inv.push({
-    id: genId(), name,
-    qty:      document.getElementById('invQty').value.trim(),
-    status:   document.getElementById('invStatus').value,
-    supplier: document.getElementById('invSupplier').value.trim(),
-    cost:     document.getElementById('invCost').value.trim(),
-    eta:      document.getElementById('invEta').value.trim(),
-    notes:    document.getElementById('invNotes').value.trim(),
-    date:     new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})
-  });
-  saveInv_(inv); closeInvModal(); renderAll();
+
+async function changeTaskStatus(id, status) {
+  await dbPatch('tasks', id, { status });
+  await loadTasks();
 }
-function setInvStatus(id, status) {
-  const inv = loadInv();
-  const item = inv.find(i => i.id === id);
-  if (item) { item.status = status; saveInv_(inv); renderAll(); }
+async function changeTaskDay(id, day) {
+  await dbPatch('tasks', id, { day });
+  await loadTasks();
 }
-function deleteInv(id) {
-  if (!confirm('Remove this item?')) return;
-  saveInv_(loadInv().filter(i => i.id !== id)); renderAll();
+async function deleteTask(id) {
+  if (!confirm('Delete this task?')) return;
+  await dbDelete('tasks', id);
+  await loadTasks();
+}
+
+// ── Inventory ─────────────────────────────────────────────────────────────────
+let invCache = [];
+
+async function loadInv() {
+  invCache = await dbGet('inventory', 'order=created_at.asc');
+  renderInv();
 }
 
 function renderInv() {
-  const inv = loadInv();
   const container = document.getElementById('inv-list');
-  document.getElementById('inv-count').textContent = inv.length;
+  document.getElementById('inv-count').textContent = invCache.length;
   container.innerHTML = '';
-  if (!inv.length) {
-    container.innerHTML = '<div style="color:var(--muted);font-size:13px;padding:12px 0">No inventory items yet. Click + ADD ITEM to get started ✨</div>';
+  if (!invCache.length) {
+    container.innerHTML = '<div class="empty-state">No inventory items yet. Click + ADD ITEM to get started ✨</div>';
     return;
   }
-  inv.forEach(item => {
+  invCache.forEach(item => {
     const color = INV_COLORS[item.status] || '#555';
     const div = document.createElement('div');
-    div.className = `inv-card status-${item.status.toLowerCase()}`;
+    div.className = `inv-card status-${(item.status||'').toLowerCase()}`;
     div.innerHTML = `
       <div style="flex:1">
         <div class="inv-name">${item.name}</div>
         <div class="inv-meta">
-          ${item.qty ? `<span>QTY: <strong>${item.qty}</strong></span>` : ''}
+          ${item.qty      ? `<span>QTY: <strong>${item.qty}</strong></span>` : ''}
           ${item.supplier ? `<span>FROM: <strong>${item.supplier}</strong></span>` : ''}
-          ${item.cost ? `<span>COST: <strong style="color:var(--pink)">${item.cost}</strong></span>` : ''}
-          ${item.eta ? `<span>ETA: <strong style="color:var(--cyan)">${item.eta}</strong></span>` : ''}
-          ${item.date ? `<span>ADDED: <strong>${item.date}</strong></span>` : ''}
-          ${item.notes ? `<span style="color:var(--muted);font-style:italic">${item.notes}</span>` : ''}
+          ${item.cost     ? `<span>COST: <strong style="color:var(--pink)">${item.cost}</strong></span>` : ''}
+          ${item.eta      ? `<span>ETA: <strong style="color:var(--cyan)">${item.eta}</strong></span>` : ''}
+          ${item.notes    ? `<span style="color:var(--muted);font-style:italic">${item.notes}</span>` : ''}
         </div>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
         <button class="icon-btn delete" onclick="deleteInv('${item.id}')">✕</button>
-        <div class="inv-status-btns">
+        <div style="display:flex;gap:4px;flex-wrap:wrap">
           ${INV_STATUSES.map(s => {
             const c = INV_COLORS[s];
             const active = item.status === s;
@@ -485,106 +506,58 @@ function renderInv() {
   });
 }
 
-// ── Stats ─────────────────────────────────────────────────────────────────────
-function updateStats() {
-  const tasks = loadTasks();
-  const inv   = loadInv();
-  const done  = tasks.filter(t=>t.status==='Done').length;
-  const prog  = tasks.filter(t=>t.status==='In Progress').length;
-  const ord   = tasks.filter(t=>t.status==='Ordered').length + inv.filter(i=>i.status==='Ordered').length;
-  const recv  = inv.filter(i=>i.status==='Received').length;
-  const total = (tasks.length + inv.length) || 1;
-  document.getElementById('stat-done').textContent = done;
-  document.getElementById('stat-prog').textContent = prog;
-  document.getElementById('stat-ord').textContent  = ord;
-  document.getElementById('stat-recv').textContent = recv;
-  document.getElementById('progressBar').innerHTML = `
-    <div class="pseg pseg-done" style="width:${done/total*100}%"></div>
-    <div class="pseg pseg-prog" style="width:${prog/total*100}%"></div>
-    <div class="pseg pseg-ord"  style="width:${ord/total*100}%"></div>
-    <div class="pseg pseg-ns"   style="width:${(total-done-prog-ord-recv)/total*100}%"></div>
-  `;
+function openInvModal() { document.getElementById('invModalOverlay').classList.add('open'); }
+function closeInvModal() {
+  document.getElementById('invModalOverlay').classList.remove('open');
+  ['invName','invQty','invSupplier','invCost','invEta','invNotes'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('invStatus').value = 'Ordered';
 }
-
-function renderAll() { renderTasks(); renderInv(); updateStats(); }
-
-// ── Import/Export ─────────────────────────────────────────────────────────────
-function exportData() {
-  const data = { tasks: loadTasks(), inventory: loadInv() };
-  const blob = new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = 'axelco-dashboard-' + new Date().toISOString().slice(0,10) + '.json';
-  a.click();
-}
-function importData(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    try {
-      const data = JSON.parse(e.target.result);
-      if (data.tasks)     saveTasks(data.tasks);
-      if (data.inventory) saveInv_(data.inventory);
-      renderAll();
-    } catch { alert('Invalid file'); }
+async function saveInvItem() {
+  const name = document.getElementById('invName').value.trim();
+  if (!name) return;
+  const payload = {
+    name,
+    qty:      document.getElementById('invQty').value.trim(),
+    status:   document.getElementById('invStatus').value,
+    supplier: document.getElementById('invSupplier').value.trim(),
+    cost:     document.getElementById('invCost').value.trim(),
+    eta:      document.getElementById('invEta').value.trim(),
+    notes:    document.getElementById('invNotes').value.trim(),
   };
-  reader.readAsText(file);
-  event.target.value = '';
+  try {
+    await dbPost('inventory', payload);
+    closeInvModal();
+    await loadInv();
+  } catch(e) { alert('Save failed: ' + e.message); }
+}
+async function setInvStatus(id, status) {
+  await dbPatch('inventory', id, { status });
+  await loadInv();
+}
+async function deleteInv(id) {
+  if (!confirm('Remove this item?')) return;
+  await dbDelete('inventory', id);
+  await loadInv();
 }
 
-// Close modals on overlay click
+// ── Init ──────────────────────────────────────────────────────────────────────
+async function refreshAll() {
+  setSyncStatus('spin', '● SYNCING...');
+  try {
+    renderShopify();
+    await Promise.all([loadTasks(), loadInv()]);
+    setSyncStatus('ok', '● LIVE');
+  } catch(e) {
+    setSyncStatus('err', '● SYNC ERROR');
+    console.error(e);
+  }
+}
+
 document.getElementById('taskModalOverlay').addEventListener('click', e => { if(e.target===e.currentTarget) closeTaskModal(); });
 document.getElementById('invModalOverlay').addEventListener('click', e => { if(e.target===e.currentTarget) closeInvModal(); });
-
-// ── Supabase Sync ─────────────────────────────────────────────────────────────
-const SB_URL = 'https://yvuqgqjutljxmihuumwv.supabase.co';
-const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inl2dXFncWp1dGxqeG1paHV1bXd2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM5Nzg3NzEsImV4cCI6MjA4OTU1NDc3MX0.e1AdT57XdNRKe5iyE6Fn2Fo105O2TgBLGIvGHIMQl5Q';
-
-async function sbFetch(method, table, data, query='') {
-  try {
-    const res = await fetch(`${SB_URL}/rest/v1/${table}${query}`, {
-      method,
-      headers: {
-        'apikey': SB_KEY,
-        'Authorization': `Bearer ${SB_KEY}`,
-        'Content-Type': 'application/json',
-        'Prefer': method === 'POST' ? 'resolution=merge-duplicates' : 'return=representation'
-      },
-      body: data ? JSON.stringify(data) : undefined
-    });
-    if (!res.ok) return null;
-    const text = await res.text();
-    return text ? JSON.parse(text) : [];
-  } catch { return null; }
-}
-
-async function syncTasks() {
-  const list = loadTasks().map(t => ({...t, section: 'axelco_tasks'}));
-  if (list.length) await sbFetch('POST', 'tasks', list);
-}
-async function syncInv() {
-  const list = loadInv();
-  if (list.length) await sbFetch('POST', 'inventory', list);
-}
-async function loadFromSB() {
-  const [sbTasks, sbInv] = await Promise.all([
-    sbFetch('GET', 'tasks', null, '?section=eq.axelco_tasks&order=created_at.asc'),
-    sbFetch('GET', 'inventory', null, '?order=created_at.asc')
-  ]);
-  if (sbTasks && sbTasks.length) { saveTasks(sbTasks); }
-  if (sbInv && sbInv.length) { saveInv_(sbInv); }
-}
-
-const _origSaveTasks = saveTasks;
-function saveTasks(t) { _origSaveTasks(t); syncTasks(); }
-const _origSaveInv = saveInv_;
-function saveInv_(i) { _origSaveInv(i); syncInv(); }
-
-loadFromSB().then(() => renderAll());
-// ─────────────────────────────────────────────────────────────────────────────
-
 document.getElementById('dateDisplay').textContent = new Date().toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'}).toUpperCase();
+
+refreshAll();
 </script>
 </body>
 </html>
